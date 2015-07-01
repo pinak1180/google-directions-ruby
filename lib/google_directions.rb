@@ -100,6 +100,12 @@ class Hash
     end * '&'
   end unless method_defined? :to_query
 
+  def transcribe(location)
+    CGI::escape(location)
+    if location =~ /^(\-?\d+(\.\d+)?),(\-?\d+(\.\d+)?)$/ # latitude,longitude
+      location
+    else
+      CGI::escape(location)
+    end
+  end
 end
-
-
